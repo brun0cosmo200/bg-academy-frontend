@@ -1433,7 +1433,7 @@
       if (!data.user) return;
 
       if (data.user.role === 'personal') {
-        window.location.href = 'dashboard-personal.html';
+        window.location.href = 'dashboardpersonal.html';
         return;
       }
 
@@ -1443,10 +1443,10 @@
 
       if (pData.perfil) {
         // Perfil existe — vai pro dashboard
-        window.location.href = 'dashboard-aluno.html';
+       window.location.href = 'dashboardluno.html';
       } else {
         // Sem perfil — vai pro onboarding
-        window.location.href = 'onboarding-aluno.html';
+     window.location.href = 'onboarding-aluno.html';
       }
     } catch {}
   }
