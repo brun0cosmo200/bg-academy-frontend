@@ -873,17 +873,20 @@ function changeFreq(delta) {
 function toggleTag(el) { el.classList.toggle('active'); }
 
 // ── Finalize ─────────────────────────────────────────────────
-function finalize() {
+async function finalize() {
   collect(7);
-  localStorage.setItem('bg_perfil_aluno', JSON.stringify(data));
 
-  // TODO: POST para API
-  // const token = localStorage.getItem('bg_token');
-  // await fetch('https://sua-api.railway.app/aluno/perfil', {
-  //   method: 'POST',
-  //   headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
-  //   body: JSON.stringify(data)
-  // });
+  const token = localStorage.getItem('bg_token');
+  try {
+    await fetch('https://surprising-charm-production-533e.up.railway.app/aluno/perfil', {
+      method: 'POST',
+      headers: { 
+        'Content-Type': 'application/json', 
+        Authorization: `Bearer ${token}` 
+      },
+      body: JSON.stringify(data)
+    });
+  } catch(e) { console.error(e); }
 
   document.getElementById('questions').style.display = 'none';
   document.getElementById('btn-back').style.display = 'none';
@@ -891,6 +894,7 @@ function finalize() {
   document.getElementById('step-counter').style.display = 'none';
   document.getElementById('progress-bar').style.width = '100%';
   document.getElementById('complete').classList.add('active');
+}
 }
 
 function irDashboard() {
